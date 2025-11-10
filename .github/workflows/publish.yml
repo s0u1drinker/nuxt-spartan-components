@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Prepare (generate types and playground)
+        run: npm run dev:prepare
+
       - name: Lint
         run: npm run lint
 
