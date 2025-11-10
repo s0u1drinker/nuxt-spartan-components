@@ -1,0 +1,74 @@
+{
+  "name": "nuxt-spartan-components",
+  "version": "0.0.1",
+  "description": "Nuxt 4 module that registers vue-spartan-components globally",
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "nuxt4",
+    "vue",
+    "vue3",
+    "components",
+    "vue-spartan-components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s0u1drinker/nuxt-spartan-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/s0u1drinker/nuxt-spartan-components/issues"
+  },
+  "homepage": "https://github.com/s0u1drinker/nuxt-spartan-components#readme",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "npm run dev:prepare && nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^4.2.0",
+    "vue-spartan-components": "^0.0.8"
+  },
+  "peerDependencies": {
+    "nuxt": "^4.0.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^2.7.0",
+    "@nuxt/eslint-config": "^1.10.0",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^4.2.0",
+    "@nuxt/test-utils": "^3.20.1",
+    "@types/node": "latest",
+    "changelogen": "^0.6.2",
+    "eslint": "^9.39.1",
+    "nuxt": "^4.2.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.1.3"
+  }
+}
