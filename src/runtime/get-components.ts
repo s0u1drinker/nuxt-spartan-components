@@ -1,12 +1,12 @@
 /**
- * Автоматически определяет все компоненты из vue-spartan-components.
+ * Автоматически определяет имена компонентов из `vue-spartan-components`.
+ *
+ * Предполагаем соглашение об именовании: все компоненты начинаются с `Vsc`.
  */
 export async function getComponentNames(): Promise<string[]> {
   try {
-    // Динамический импорт всех экспортов из библиотеки.
     const componentsModule = await import('vue-spartan-components')
 
-    // Фильтруем компоненты.
     const componentNames = Object.keys(componentsModule).filter(
       name =>
         name.startsWith('Vsc')
@@ -18,7 +18,18 @@ export async function getComponentNames(): Promise<string[]> {
     return componentNames.sort()
   }
   catch {
-    // Fallback: возвращаем известные компоненты, если импорт не удался.
-    return ['VscButton', 'VscIcon']
+    // Если по какой-то причине импорт недоступен, возвращаем список компонентов.
+    return [
+      'VscButton',
+      'VscIcon',
+      'VscButton',
+      'VscIcon',
+      'VscInput',
+      'VscInputText',
+      'VscInputPassword',
+      'VscLabel',
+      'VscMessage',
+      'VscRating',
+    ]
   }
 }
